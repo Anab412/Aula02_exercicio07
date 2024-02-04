@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cálculo de Média Final</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <h1>Cálculo de Média Final</h1>
+
+  <label for="idAluno">Número de Identificação:</label>
+  <input type="text" id="idAluno" placeholder="Digite o ID">
+
+  <br><br>
+
+  <label for="nota1">Nota 1:</label>
+  <input type="number" id="nota1" placeholder="Digite a nota 1">
+
+  <label for="nota2">Nota 2:</label>
+  <input type="number" id="nota2" placeholder="Digite a nota 2">
+
+  <label for="nota3">Nota 3:</label>
+  <input type="number" id="nota3" placeholder="Digite a nota 3">
+
+  <br><br>
+
+  <button onclick="calcularMedia()">Calcular Média</button>
+
+  <br><br>
+
+  <div id="resultado"></div>
+
+  <script>
+    function calcularMedia() {
+      const idAluno = document.getElementById("idAluno").value;
+      const nota1 = parseFloat(document.getElementById("nota1").value);
+      const nota2 = parseFloat(document.getElementById("nota2").value);
+      const nota3 = parseFloat(document.getElementById("nota3").value);
+
+      const mediaFinal = (nota1 + nota2 + nota3) / 3;
+
+      let conceito;
+      let situacao;
+
+      if (mediaFinal >= 90) {
+        conceito = "A";
+        situacao = "Aprovado";
+      } else if (mediaFinal >= 75) {
+        conceito = "B";
+        situacao = "Aprovado";
+      } else if (mediaFinal >= 60) {
+        conceito = "C";
+        situacao = "Recuperação";
+      } else if (mediaFinal >= 40) {
+        conceito = "D";
+        situacao = "Reprovado";
+      } else {
+        conceito = "E";
+        situacao = "Reprovado";
+      }
+
+      const maiorNota = Math.max(nota1, nota2, nota3);
+      const menorNota = Math.min(nota1, nota2, nota3);
+
+      const resultado = `
+        <p>Número de Identificação: ${idAluno}</p>
+        <p>Notas Bimestrais: ${nota1}, ${nota2}, ${nota3}</p>
+        <p>Média Final: ${mediaFinal.toFixed(2)}</p>
+        <p>Conceito: ${conceito}</p>
+        <p>Situação: ${situacao}</p>
+        <p>Bimestre com Maior Nota: ${maiorNota}</p>
+        <p>Bimestre com Menor Nota: ${menorNota}</p>
+      `;
+
+      document.getElementById("resultado").innerHTML = resultado;
+    }
+  </script>
+</body>
+</html>
+
